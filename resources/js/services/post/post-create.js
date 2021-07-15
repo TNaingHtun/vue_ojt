@@ -123,9 +123,8 @@ export default {
             })
         },
 
-        resetForm() {
-            this.post.title = this.post.description = '';
-            this.$refs.formValidationObserver.reset()
+        cancelForm() {
+            this.$router.push({ name: "test" });
         }
     }
 }

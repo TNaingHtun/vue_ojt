@@ -74,7 +74,7 @@
             </v-card-text>
             <v-card-actions class="update-action">
                 <v-btn :disabled="!valid" color="success" class="mr-4" @click="updateForm" >Update</v-btn >
-                <v-btn color="error" class="mr-4" @click="resetForm" >Clear</v-btn>
+                <v-btn color="error" class="mr-4" @click="cancelForm" >Cancel</v-btn>
             </v-card-actions>
         </v-form>
     </v-card>

@@ -109,8 +109,8 @@
                     @click="submitForm"
                     >Create</v-btn
                 >
-                <v-btn color="error" large class="mr-4" @click="resetForm"
-                    >Clear</v-btn
+                <v-btn color="error" large class="mr-4" @click="cancelForm"
+                    >Cancel</v-btn
                 >
             </v-card-actions>
         </v-form>

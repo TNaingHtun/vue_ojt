@@ -70,7 +70,12 @@ export default {
                 this.phone = response.data.phone;
                 this.address = response.data.address;
                 this.oldProfile = response.data.image;
-                document.getElementById("old-profile").src = this.profileUrl + response.data.image;
+                if (response.data.image.includes('profile')) {
+                    document.getElementById("old-profile").src =
+                        "/images/" + response.data.image;
+                } else {
+                    document.getElementById("old-profile").src = this.profileUrl + response.data.image;
+                }
                 document.getElementById("old-profile").alt = response.data.image;
                 console.log(this.oldProfile);
             })
@@ -97,10 +102,8 @@ export default {
             }
         },
 
-        resetForm() {
-            const image = document.getElementById("profile-preview");
-            image.style.display = "none";
-            this.$refs.form.reset();
+        cancelForm() {
+            this.$router.push({ name: "profile-list" });
         },
 
         updateForm() {

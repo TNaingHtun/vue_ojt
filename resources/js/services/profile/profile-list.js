@@ -117,8 +117,14 @@ export default {
     },
     updated() {
         if (document.getElementById("detail-dialog")) {
-            document.getElementById("detail-profile").src =
-                this.profileUrl + this.profileInfo.image;
+            if (this.profileInfo.image.includes('profile')) {
+                document.getElementById("detail-profile").src =
+                    "/images/" + this.profileInfo.image;
+            } else {
+
+                document.getElementById("detail-profile").src =
+                    this.profileUrl + this.profileInfo.image;
+            }
             document.getElementById(
                 "detail-profile"
             ).alt = this.profileInfo.image;

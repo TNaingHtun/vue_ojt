@@ -73,8 +73,8 @@
                         </div>
 
                         <div class="buttons">
-                            <button class="btn btn-secondary cancel-btn" @click="resetForm()">
-                                Reset
+                            <button class="btn btn-secondary cancel-btn" @click="cancelForm()">
+                                Cancel
                             </button>
                             <button class="btn btn-success submit-btn" @click="saveForm(post)">
                                 Submit

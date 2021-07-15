@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\UserProfile;
+use Illuminate\Support\Facades\DB;
 
 class CreateProfileSeeder extends Seeder
 {
@@ -18,26 +19,27 @@ class CreateProfileSeeder extends Seeder
             [
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
-                'image' => 'profile.jpg',
+                'image' => 'profile.png',
                 'phone' => '09000000000',
                 'address' => 'Yangon',
             ],
             [
                 'name' => 'Tin Naing Htun',
                 'email' => 'tnh@gmail.com',
-                'image' => 'profile.jpg',
+                'image' => 'profile.png',
                 'phone' => '09000000000',
                 'address' => 'Yangon',
             ],
             [
                 'name' => 'Su Mi',
                 'email' => 'sm@gmail.com',
-                'image' => 'profile.jpg',
+                'image' => 'profile.png',
                 'phone' => '09000000000',
                 'address' => 'Yangon',
             ],
         ];
 
+        DB::table('user_profiles')->truncate();
         foreach ($profile as $key => $value) {
             UserProfile::create($value);
         }

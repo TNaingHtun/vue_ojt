@@ -78,10 +78,8 @@ export default {
             }
         },
 
-        resetForm() {
-            const image = document.getElementById("profile-preview");
-            image.style.display = "none";
-            this.$refs.form.reset();
+        cancelForm() {
+            this.$router.push({ name: "profile-list" });
         },
 
         submitForm() {

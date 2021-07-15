@@ -148,9 +148,9 @@
                         <div class="buttons">
                             <button
                                 class="btn btn-secondary cancel-btn"
-                                @click="resetForm()"
+                                @click="cancelForm()"
                             >
-                                Reset
+                                Cancel
                             </button>
                             <button
                                 class="btn btn-success submit-btn"
