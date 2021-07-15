@@ -1,0 +1,19 @@
+th,
+td {
+    text-align: center;
+}
+
+th {
+    padding: 0 !important;
+}
+
+.iconHide {
+    display: none;
+}
+
+.fa-long-arrow-alt-up,
+.fa-long-arrow-alt-down {
+    color: #707070;
+    font-weight: lighter im !important;
+    font-size: 12px;
+}
