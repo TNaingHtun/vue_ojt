@@ -32,7 +32,8 @@ class ProfileEditAPIRequest extends FormRequest
     return [
       'name' => ['required', 'string', 'max:255'],
       'email' => ['required', 'string', 'email', 'max:255', Rule::unique('user_profiles')->ignore($this->route('profileId'))],
-      'profile' => ['image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+      'profile',
+      'oldProfile',
       'phone' => ['max:11'],
       'address' => ['max:255']
     ];

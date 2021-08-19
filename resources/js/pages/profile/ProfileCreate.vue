@@ -87,9 +87,6 @@
                     >
                         <template #label>
                             <span>Profile</span>
-                            <span class="red--text">
-                                <strong>*</strong>
-                            </span>
                         </template>
                     </v-file-input>
                     <div v-if="errors.profile">

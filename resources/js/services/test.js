@@ -9,6 +9,7 @@ export default {
             searchKeyword: "This is search keyword",
             posts: [],
             filterPost: [],
+            downloadPosts: [],
             postInfo: null,
             dialogTitle: "",
             dialog: false,
@@ -47,11 +48,9 @@ export default {
             excel_heading: {
                 "Post Title": "title",
                 "Post Desciption": "description",
-                "Post Status": "status",
-                "Post Created Date": "created_at",
                 "Post Expired Date": "expired_at",
                 "Post User": "created_user"
-            }
+            },
         }
     },
     watch: {
@@ -144,6 +143,26 @@ export default {
         },
         csvUpload() {
             this.$router.push({ name: "post-upload" });
+        },
+
+        downloadCSV() {
+            for (var i in this.posts) {
+                this.posts[i].expired_at = moment(this.posts[i].expired_at, "YYYY/MM/DD").format("MM/DD/YYYY");
+            }
+            axios.post('/api/post/download/', this.posts)
+                .then(response => {
+                    var fileURL = window.URL.createObjectURL(new Blob([response.data]));
+                    var fileLink = document.createElement('a');
+
+                    fileLink.href = fileURL;
+                    fileLink.setAttribute('download', 'posts.csv');
+                    document.body.appendChild(fileLink);
+                    fileLink.click();
+                    console.log(response.data);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
         }
     },
     updated() {

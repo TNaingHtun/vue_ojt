@@ -36,7 +36,8 @@ class ProfileService implements ProfileServiceInterface
         return $this->profileDao->getProfileList();
     }
 
-    public function showProfilebyId($profileId){
+    public function showProfilebyId($profileId)
+    {
         return $this->profileDao->showProfilebyId($profileId);
     }
 
@@ -47,22 +48,26 @@ class ProfileService implements ProfileServiceInterface
         Log::info($validated['profile']);
         Log::info($profile->image);
 
-        Storage::putFileAs(
-            config('path.profile') . $profile->id,
-            $validated['profile'],
-            $profile->image
-        );
+        if (!empty($profile->image)) {
+            Storage::putFileAs(
+                config('path.profile') . $profile->id,
+                $validated['profile'],
+                $profile->image
+            );
 
-        $content = Storage::get(config('path.profile') . $profile->id . config('path.separator') . $profile->image);
-        if(!empty($content)){
-            Log::info('store S3');
-            // Log::info($content);
-            Storage::disk('s3')->put('user_profile/'.$profile->image, $content);
+            $content = Storage::get(config('path.profile') . $profile->id . config('path.separator') . $profile->image);
+            if (!empty($content)) {
+                Log::info('store S3');
+                // Log::info($content);
+                Storage::disk('s3')->put('user_profile/' . $profile->image, $content);
+            }
+
+            $get_file_path = config('path.user_profile') . $profile->image;
+            Log::info('get from S3');
+            Log::info($get_file_path);
         }
 
-        $get_file_path = config('path.user_profile').$profile->image;
-        Log::info('get from S3');
-        Log::info($get_file_path);
+
         return $profile;
     }
 
@@ -83,10 +88,18 @@ class ProfileService implements ProfileServiceInterface
                 // Log::info($content);
                 Storage::disk('s3')->put('user_profile/' . $profile->image, $content);
             }
-            
-            Log::info('update delete s3');
-            Log::info($profileInfo['oldProfile']);
-            Storage::disk('s3')->delete('user_profile/' . $profileInfo['oldProfile']);
+
+            if ($profileInfo['oldProfile'] !== 'null') {
+                $deleteImage = Storage::get(config('path.profile') . $profile->id . config('path.separator') . $profileInfo['oldProfile']);
+                if (!empty($deleteImage)) {
+                    Log::info('delete image');
+                    Log::info($deleteImage);
+                    Storage::delete(config('path.profile') . $profile->id . config('path.separator') . $profileInfo['oldProfile']);
+                }
+                Log::info('update delete s3');
+                Log::info($profileInfo['oldProfile']);
+                Storage::disk('s3')->delete('user_profile/' . $profileInfo['oldProfile']);
+            }
         }
         return $profile;
     }

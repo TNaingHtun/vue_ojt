@@ -32,12 +32,25 @@ class ProfileApiController extends Controller
      */
     public function showProfileList()
     {
+        $header_user_id = app('request')->header('User-Id');
+        Log::info('header userId');
+        Log::info($header_user_id);
+        $header_token_data = app('request')->header('Authorization');
+        Log::info('header token');
+        Log::info($header_token_data);
         $result = $this->profileInterface->getProfileList();
         return $result;
     }
 
-    public function showProfilebyId($profileId){
+    public function showProfilebyId($profileId)
+    {
         Log::info($profileId);
+        $header_user_id = app('request')->header('User-Id');
+        Log::info('header userId');
+        Log::info($header_user_id);
+        $header_token_data = app('request')->header('Authorization');
+        Log::info('header token');
+        Log::info($header_token_data);
         $profile = $this->profileInterface->showProfilebyId($profileId);
         Log::info($profile);
         return response()->json($profile);
@@ -46,20 +59,28 @@ class ProfileApiController extends Controller
     public function createProfile(ProfileCreateAPIRequest $request)
     {
         Log::info($request);
-        $validated = $request->validated();
-        $profile = $this->profileInterface->createProfile($validated);
+        $profile = $this->profileInterface->createProfile($request);
         return response()->json($profile);
     }
 
-    public function updateProfile(ProfileEditAPIRequest $request,$profileId){
+    public function updateProfile(ProfileEditAPIRequest $request, $profileId)
+    {
         Log::info('enter');
         Log::info($request);
         Log::info($profileId);
-        $profile = $this->profileInterface->updateProfile($request,$profileId);
+        $header_user_id = app('request')->header('User-Id');
+        Log::info('header userId');
+        Log::info($header_user_id);
+        $header_token_data = app('request')->header('Authorization');
+        Log::info('header token');
+        Log::info($header_token_data);
+
+        $profile = $this->profileInterface->updateProfile($request, $profileId);
         return response()->json($profile);
     }
 
-    public function deleteProfile($profileId){
+    public function deleteProfile($profileId)
+    {
         Log::info($profileId);
         $msg = $this->profileInterface->deleteProfile($profileId);
         return $msg;

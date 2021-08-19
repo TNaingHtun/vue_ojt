@@ -30,6 +30,7 @@ Route::post('/post/create', [PostApiController::class,'createPost']);
 Route::put('/post/edit/{id}', [PostApiController::class,'updatePostListById']);
 Route::post('/post/upload', [PostApiController::class,'uploadCSVPost']);
 Route::delete('/post/delete/{id}', [PostApiController::class,'deletePostListById']);
+Route::post('/post/download/', [PostApiController::class,'downloadPostCSV']);
 
 Route::get('/user/list', [UserApiController::class,'showUserList']);
 

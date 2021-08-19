@@ -19,21 +19,18 @@ class CreateProfileSeeder extends Seeder
             [
                 'name' => 'Admin',
                 'email' => 'admin@gmail.com',
-                'image' => 'profile.png',
                 'phone' => '09000000000',
                 'address' => 'Yangon',
             ],
             [
                 'name' => 'Tin Naing Htun',
                 'email' => 'tnh@gmail.com',
-                'image' => 'profile.png',
                 'phone' => '09000000000',
                 'address' => 'Yangon',
             ],
             [
                 'name' => 'Su Mi',
                 'email' => 'sm@gmail.com',
-                'image' => 'profile.png',
                 'phone' => '09000000000',
                 'address' => 'Yangon',
             ],

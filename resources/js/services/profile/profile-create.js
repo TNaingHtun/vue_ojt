@@ -48,7 +48,6 @@ export default {
 
             // validation rules for profile picture
             profileRules: [
-                value => !!value || "The Profile field is required.",
                 value =>
                 !value ||
                 value.size < 2000000 ||
@@ -88,7 +87,9 @@ export default {
             formData.append("email", this.email);
             formData.append("phone", this.phone);
             formData.append("address", this.address);
-            formData.append("profile", this.profile);
+            if (this.profile) {
+                formData.append("profile", this.profile);
+            }
             console.log(formData);
             axios
                 .post('../../../api/profile/create', formData, {

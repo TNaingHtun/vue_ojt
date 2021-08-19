@@ -41,12 +41,12 @@ class PostCsvValidation
         // save post to Database accoding to csv row
         for ($index = 1; $index < count($csv_data); $index++) {
             Log::info("CSV header row");
-            Log::info($csv_data[$index]);
+            Log::info($csv_data[0]);
             $row = $csv_data[$index];
             Log::info("Row data");
             Log::info($row);
 
-            if (count($row) >= 4) {
+            if (count($row) === 4) {
                 try {
                     if ($row[0] == "") {
                         $content = array(
@@ -136,7 +136,6 @@ class PostCsvValidation
                             'message' => 'Row number (' . ($index) . ') date is invalid format.'
                         );
                         array_push($validation_error, $content);
-                        return $content;
                     }
                 }
             } else {
@@ -146,7 +145,6 @@ class PostCsvValidation
                     'message' => 'Row number (' . ($index) . ') is invalid format.'
                 );
                 array_push($validation_error, $content);
-                return $content;
             }
         }
         Log::info($validation_error);

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\Post\PostApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,5 @@ Route::get('/vue',function(){
 Route::get('/vue/{any}',function(){
     return view('vue-index');
 })->where('any','.*');
+
+// Route::post('/post/download/', [PostApiController::class,'downloadPostCSV']);

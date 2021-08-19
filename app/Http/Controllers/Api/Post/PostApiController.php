@@ -12,6 +12,8 @@ use App\Services\Validation\PostCsvValidation;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use App\Exports\PostsExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class PostApiController extends Controller
 {
@@ -183,5 +185,23 @@ class PostApiController extends Controller
             $content = $this->postInterface->uploadCSVPost($validated);
             return response()->json(['message' => $content['message']]);
         }
+    }
+
+    public function downloadPostCSV(Request $request)
+    {
+        Log::info($request->toArray());
+        $postInfo = $request->toArray();
+        $postsArray = array();
+        for($i=0;$i<count($postInfo);$i++){
+            $data = array(
+                'title'=>$postInfo[$i]['title'],
+                'description'=>$postInfo[$i]['description'],
+                'expired_at'=>$postInfo[$i]['expired_at'],
+                'created_user'=>$postInfo[$i]['created_user'],
+            );
+            array_push($postsArray, $data);
+        }
+        Log::info($postsArray);
+        return Excel::download(new PostsExport($postsArray), 'posts.csv');
     }
 }

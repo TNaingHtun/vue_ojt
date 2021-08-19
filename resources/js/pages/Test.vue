@@ -19,9 +19,14 @@
                 </export-excel> -->
 
                 <!-- vue-json-excel -->
-                <download-excel :data="posts" :fields="excel_heading" worksheet="posts" name="posts.xls">
+                <download-excel :data="posts" :fields="excel_heading" worksheet="posts" type="csv" name="posts.xls" >
                     <v-btn color="success">Download Excel</v-btn>
                 </download-excel>
+
+                <v-btn class="ml-1 mr-3" color="success"  @click="downloadCSV()">
+                    Download CSV with Laravel Excel
+                </v-btn>
+
             </v-row>
             <v-container>
                 <v-data-table

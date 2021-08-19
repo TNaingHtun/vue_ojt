@@ -1,3 +1,4 @@
+import { isEmpty } from "lodash";
 import constants from "../../constant";
 export default {
     data() {
@@ -70,9 +71,9 @@ export default {
                 this.phone = response.data.phone;
                 this.address = response.data.address;
                 this.oldProfile = response.data.image;
-                if (response.data.image.includes('profile')) {
+                if (isEmpty(response.data.image)) {
                     document.getElementById("old-profile").src =
-                        "/images/" + response.data.image;
+                        "/images/profile.png";
                 } else {
                     document.getElementById("old-profile").src = this.profileUrl + response.data.image;
                 }

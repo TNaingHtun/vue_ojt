@@ -17,7 +17,7 @@ class CreateUserProfilesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('image',255);
+            $table->string('image',255)->nullable();
             $table->char('phone',20)->nullable();
             $table->string('address',255)->nullable();
             $table->softDeletes('contract_end', 0);

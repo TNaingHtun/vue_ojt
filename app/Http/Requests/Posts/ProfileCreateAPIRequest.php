@@ -29,7 +29,7 @@ class ProfileCreateAPIRequest extends FormRequest
     return [
       'name' => ['required', 'string', 'max:255'],
       'email' => ['required', 'string', 'email', 'max:255', 'unique:user_profiles'],
-      'profile' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048'],
+      'profile',
       'phone' => ['max:11'],
       'address' => ['max:255']
     ];

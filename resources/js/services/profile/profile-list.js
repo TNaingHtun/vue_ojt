@@ -117,9 +117,9 @@ export default {
     },
     updated() {
         if (document.getElementById("detail-dialog")) {
-            if (this.profileInfo.image.includes('profile')) {
+            if (isEmpty(this.profileInfo.image)) {
                 document.getElementById("detail-profile").src =
-                    "/images/" + this.profileInfo.image;
+                    "/images/profile.png";
             } else {
 
                 document.getElementById("detail-profile").src =

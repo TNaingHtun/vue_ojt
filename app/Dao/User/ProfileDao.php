@@ -40,14 +40,17 @@ class ProfileDao implements ProfileDaoInterface
 
     public function createProfile($validated)
     {
-        $profileName = time() . '.' . $validated['profile']->extension();
-        Log::info($profileName);
+        
         $profile = new UserProfile();
         $profile->name = $validated['name'];
         $profile->email = $validated['email'];
         $profile->phone = $validated['phone'];
         $profile->address = $validated['address'];
-        $profile->image = $profileName;
+        if($validated['profile']){
+            $profileName = time() . '.' . 'jpg';
+            Log::info($profileName);
+            $profile->image = $profileName;
+        }
         $profile->save();
         return $profile;
     }
@@ -63,7 +66,7 @@ class ProfileDao implements ProfileDaoInterface
         if ($profileInfo['profile']) {
 
             Log::info("is profile");
-            $profileName = time() . '.' . $profileInfo['profile']->extension();
+            $profileName = time() . '.' . 'jpg';
             Log::info($profileName);
             $profile->image = $profileName;
         }

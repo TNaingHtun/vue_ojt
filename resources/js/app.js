@@ -16,11 +16,14 @@ import moment from "moment";
 import excel from 'vue-excel-export';
 //vue_json_excel
 import JsonExcel from "vue-json-excel";
+//vue-excel-xlsx
+import VueExcelXlsx from "vue-excel-xlsx";
 
 library.add(fas);
 dom.watch();
 
 Vue.use(excel);
+Vue.use(VueExcelXlsx);
 Vue.use(VueRouter);
 Vue.use(VueAxios, axios);
 Vue.use(Vuetify);
